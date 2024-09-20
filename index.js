@@ -1,8 +1,33 @@
 // This one will be a little tricky. So check out this overview first: https://www.youtube.com/watch?v=sJ-c3BA-Ypo
 
 // 1. Create a variable to store the singleton instance of the bank branch. "bankBranchInstance"
-
+let bankBranchInstance=null ;   //declares the variable to null to indicate that no instance for BankBranch class has been created yet
 // 2. Define a class called `BankBranch` for managing branch information.
+class BankBranch {              //defines a new class to create an objecct
+    constructor (branchInfo) {   //defines a constructor that takes branchInfo parameter
+        if( bankBranchInstance === null)  {     //checks if bankBranchInstance is null 
+            
+            this.branchInfo = branchInfo;       //stores the branchInfo in the instance variable this.branchInfo
+            bankBranchInstance=this;            //assigns the instance ,this, to the bankBranchInstance
+            
+        }return bankBranchInstance;            
+                                                    
+    } 
+        
+    getBranchInfo() {       //retrieves bank brancj information
+        return this.branchInfo;        //returns the branchInfo of the current instance
+    }
+};
+    
+
+const branchA = new BankBranch({name:"Hayfields", location:"Lucas Street", tel: +27332490786});
+const branchB = new BankBranch({name:"Liberty Midlands Mall", location:"Zanzibar Street" , tel: +27332490947});
+
+console.log(branchA.getBranchInfo());
+console.log(branchB.getBranchInfo());
+console.log(branchA === branchB);
+
+
 
 // 3. In the `BankBranch` class:
 //    - Create a constructor that takes `branchInfo` as a parameter.
